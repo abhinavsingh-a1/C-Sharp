@@ -1,0 +1,49 @@
+Creating an array of delegates is very similar to declaring an array of any type. The following example has a couple of static methods to perform specific math related operations. Then you use delegates to call these methods. 
+using System;  
+  
+namespace Delegates  
+{  
+    public class Operation  
+    {  
+        public static void Add(int a, int b)  
+        {  
+            Console.WriteLine("Addition={0}",a + b);  
+        }  
+  
+        public static void Multiple(int a, int b)  
+        {  
+            Console.WriteLine("Multiply={0}", a * b);  
+        }  
+    }   
+  
+    class Program  
+    {  
+        delegate void DelOp(int x, int y);  
+  
+        static void Main(string[] args)  
+        {  
+            // Delegate instantiation  
+            DelOp[] obj =   
+           {  
+               new DelOp(Operation.Add),  
+               new DelOp(Operation.Multiple)  
+           };  
+   
+            for (int i = 0; i < obj.Length; i++)  
+            {  
+                obj[i](2, 5);  
+                obj[i](8, 5);  
+                obj[i](4, 6);  
+            }  
+            Console.ReadLine();  
+        }  
+    }  
+}  
+In this code, you instantiate an array of Delop delegates. Each element of the array is initialized to refer to a different operation implemented by the operation class. Then, you loop through the array, apply each operation to three different values. After compiling this code, the output will be as follows;
+
+Addition=7
+Addition=13
+Addition=10
+Multiply=10
+Multiply=40
+Multiply=24
