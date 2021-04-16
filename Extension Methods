@@ -1,0 +1,64 @@
+Create a project Class Library project in Visual Studio.
+Add the following code to the Class1. Class1 has two methods, Display and Print.  
+using System;  
+using System.Text;  
+  
+namespace ClassLibExtMethod  
+{  
+    public class Class1  
+    {  
+        public string Display()  
+        {  
+            return ("I m in Display");  
+        }  
+  
+        public string Print()  
+        {  
+            return ("I m in Print");  
+        }  
+    }  
+}  
+
+Create a Caller Application
+Now create a console application in Visual Studio using New Project. Select File > New > Project and select Visual C# and Console Application as shown below.
+Add the reference of the previously created class library to this project.
+
+Use the following code and use the ClassLibExtMEthod.dll in your namespace:
+
+using System;  
+using System.Text;  
+using ClassLibExtMethod;  
+  
+namespace ExtensionMethod1  
+{  
+    public static class XX  
+    {  
+         public static void NewMethod(this Class1 ob)  
+        {  
+            Console.WriteLine("Hello I m extended method");  
+        }  
+    }  
+  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            Class1 ob = new Class1();  
+            ob.Display();  
+            ob.Print();  
+            ob.NewMethod();  
+            Console.ReadKey();  
+        }  
+    }  
+}  
+
+
+In the above code, you see there is a static class XX with a method, NewMethod. If you notice, the NewMethod takes Class1 as a parameter. This is how you extend an existing library and add your own methods to it. Now, this New Method is available via the class library.
+ 
+When you use Visual Studio Intellisense, you can see the extension method is represented with an arrow (different from the normal method sign), since they were instance methods on the extended type. See the figure below:
+
+
+Output of the preceding program looks like the following.
+I am in display
+I am in print
+I am in extended method
