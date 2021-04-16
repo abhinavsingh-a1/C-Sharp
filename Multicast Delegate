@@ -81,3 +81,10 @@ namespace Delegates
         }  
     }  
 }  
+
+
+OUTPUT -
+=======
+one display
+Error caught
+Two display
