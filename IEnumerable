@@ -1,0 +1,61 @@
+using System;  
+using System.Diagnostics;  
+using System.Reflection;  
+using System.Collections;  
+namespace TestDomain  
+{  
+    class Test : IEnumerable  
+    {  
+        Test[] Items = null;  
+        int freeIndex = 0;  
+        public String Name { get; set; }  
+        public string Surname { get; set; }  
+        public Test()  
+        {  
+            Items = new Test[10];  
+        }  
+        public void Add(Test item)  
+        {  
+            Items[freeIndex] = item;  
+            freeIndex++;  
+        }  
+        // IEnumerable Member  
+        public IEnumerator GetEnumerator()  
+        {  
+            foreach (object o in Items)  
+            {  
+                if(o == null)  
+                {  
+                    break;  
+                }  
+                yield return o;  
+            }  
+        }  
+    }  
+    class Program  
+    {  
+        public static void Main(String[] args)  
+        {  
+            Test t1 = new Test();  
+            t1.Name = "Sourav";  
+            t1.Surname = "Kayal";  
+            Test t2 = new Test();  
+            t2.Name = "Ram";  
+            t2.Surname = "Das";  
+            Test myList = new Test();  
+            myList.Add(t1);  
+            myList.Add(t2);  
+            foreach (Test obj in myList)  
+            {  
+                Console.WriteLine("Name:- " +  obj.Name + "Surname :- " + obj.Surname);  
+            }  
+            Console.ReadLine();  
+        }  
+    }  
+}  
+
+
+OUTPUT -
+========
+Name:- Sourav SurName:- Kayal
+Name:- Ram SurName:- Das
