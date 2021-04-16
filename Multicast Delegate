@@ -1,0 +1,83 @@
+using System;  
+  
+namespace Delegates  
+{  
+    public class Operation  
+    {  
+        public static void Add(int a)  
+        {  
+            Console.WriteLine("Addition={0}", a + 10);  
+        }  
+        public static void Square(int a)  
+        {  
+            Console.WriteLine("Multiple={0}",a * a);  
+        }  
+    }  
+    class Program  
+    {  
+        delegate void DelOp(int x);  
+   
+        static void Main(string[] args)  
+        {  
+            // Delegate instantiation  
+            DelOp obj = Operation.Add;  
+            obj += Operation.Square;  
+   
+            obj(2);  
+            obj(8);  
+   
+            Console.ReadLine();  
+        }  
+    }  
+}  
+
+
+But Above code have problem, suppose Add() method throws error then how rest code will iterate.
+Handle it by GetInvocationList() method which is an array of delegates representing the invocation list of the current delegate.
+
+
+
+using System;  
+  
+namespace Delegates  
+{  
+    public class Operation  
+    {  
+        public static void One()  
+        {  
+            Console.WriteLine("one display");  
+            throw new Exception("Error");   
+        }  
+        public static void Two()  
+        {  
+            Console.WriteLine("Two display");  
+        }  
+    }  
+  
+    class Program  
+    {  
+        delegate void DelOp();  
+  
+        static void Main(string[] args)  
+        {  
+            // Delegate instantiation  
+            DelOp obj = Operation.One;  
+            obj += Operation.Two;  
+  
+            Delegate[] del = obj.GetInvocationList();  
+  
+            foreach (DelOp d in del)  
+            {  
+                try  
+                {  
+                    d();  
+                }  
+                catch (Exception)  
+                {  
+                    Console.WriteLine("Error caught");  
+                }  
+            }  
+            Console.ReadLine();  
+        }  
+    }  
+}  
