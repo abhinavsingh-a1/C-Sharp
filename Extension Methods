@@ -19,7 +19,8 @@ namespace ClassLibExtMethod
     }  
 }  
 
-Create a Caller Application
+Create a Caller Application -
+=============================
 Now create a console application in Visual Studio using New Project. Select File > New > Project and select Visual C# and Console Application as shown below.
 Add the reference of the previously created class library to this project.
 
