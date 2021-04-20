@@ -1,0 +1,42 @@
+   class MyData {    
+        public string FirstName {    
+            get;    
+            set;    
+        }    
+        public string LastName {    
+            get;    
+            set;    
+        }    
+	        public DateTime DOB {    
+	            get;    
+	            set;    
+	        }    
+	        public string MiddleName {    
+	            get;    
+	            set;    
+	        }    
+	    } 
+      
+	    static void Main(string[] args) {    
+	        // Create Dummy Data to fill Collection.    
+	        List < MyData > data = new List < MyData > ();    
+	        data.Add(new MyData {    
+	            FirstName = "Jignesh", LastName = "Trivedi", MiddleName = "G", DOB = new DateTime(1990, 12, 30)    	        });    
+	        data.Add(new MyData {    
+	            FirstName = "Tejas", LastName = "Trivedi", MiddleName = "G", DOB = new DateTime(1995, 11, 6)    	        });    
+	        data.Add(new MyData {    
+	            FirstName = "Rakesh", LastName = "Trivedi", MiddleName = "G", DOB = new DateTime(1993, 10, 8)   	        });    
+	        data.Add(new MyData {    
+	            FirstName = "Amit", LastName = "Vyas", MiddleName = "P", DOB = newDateTime(1983, 6, 15)            });    
+	        data.Add(new MyData {    
+	            FirstName = "Yash", LastName = "Pandiya", MiddleName = "K", DOB = newDateTime(1988, 7, 20)         });    
+	    }    
+      
+	    var anonymousData = from pl in data    
+	    select new {    
+	        pl.FirstName, pl.LastName    
+	    };    
+	    foreach(var m in anonymousData) {    
+	        Console.WriteLine("Name : " + m.FirstName + " " + m.LastName);    
+	    }    
+	}   
