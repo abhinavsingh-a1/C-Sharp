@@ -31,3 +31,18 @@ namespace threading
         }  
     }  
 }  
+
+Output -
+==========
+
+Thread 1 : has entered in the Domain
+Thread 1 : is leaving the domain
+
+Thread 4 : has entered in the Domain
+Thread 4 : is leaving the domain
+
+Thread 3 : has entered in the Domain
+Thread 3 : is leaving the domain
+
+Thread 2 : has entered in the Domain
+Thread 2 : is leaving the domain
