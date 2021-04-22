@@ -1,0 +1,34 @@
+
+using System;  
+using System.Threading;  
+namespace threading  
+{  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            Thread t = new Thread(myFun);  
+             t.Start();  
+            Console.WriteLine("Main thread Running");  
+            Console.WriteLine("Thread Name: {0}", t.Name);  
+            Console.WriteLine("Thread Status: {0}", t.IsAlive);  
+            Console.WriteLine("Priority: {0}", t.Priority);  
+            Console.WriteLine("Context ID: {0}", Thread.CurrentContext.ContextID);  
+            Console.WriteLine("Current application domain: {0}",Thread.GetDomain().FriendlyName); 
+            Console.ReadKey();   
+        }  
+        static void myFun()  
+        {  
+            Console.WriteLine("Running other Thread");   
+        }  
+    }  
+}  
+
+==========================================
+Main thread Running
+Thread Name: Primary_Thread  
+Thread Status: True  
+Priority: Normal  
+Context ID: 0
+Current application domain: threading.vshost.exe
+Running other Thread
