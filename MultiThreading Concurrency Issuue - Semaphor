@@ -1,0 +1,53 @@
+using System;  
+using System.Threading;  
+namespace threading  
+{  
+    class Program  
+    {  
+        static Semaphore obj = new Semaphore(2, 4);  
+        static void Main(string[] args)  
+        {  
+            for (int i = 1; i <= 5; i++)  
+            {  
+                new Thread(SempStart).Start(i);  
+            }  
+            Console.ReadKey();  
+        }  
+        static void SempStart(object id)  
+        {  
+            Console.WriteLine(id + "-->>Wants to Get Enter");  
+            try  
+            {  
+                obj.WaitOne();  
+                Console.WriteLine(" Success: " + id + " is in!");     
+                Thread.Sleep(2000);  
+                Console.WriteLine(id + "<<-- is Evacuating");  
+            }  
+            finally  
+            {  
+                obj.Release();  
+            }  
+        }  
+    }  
+}  
+
+
+
+Output -
+========
+
+1-->> Wants to get Enter
+Success: 1 is in!
+2-->> Wants to get Enter
+Success: 2 is in!
+3-->> Wants to get Enter
+4-->> Wants to get Enter
+5-->> Wants to get Enter
+1<<-- is Evacuating!
+Success: 5 is in!
+2<<-- is Evacuating!
+Success: 4 is in!
+5<<-- is Evacuating!
+Success: 3 is in!
+4<<-- is Evacuating!
+3<<-- is Evacuating!
