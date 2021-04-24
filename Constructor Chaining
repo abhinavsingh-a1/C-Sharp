@@ -1,0 +1,86 @@
+public class mySampleClass  
+{  
+    public mySampleClass()  
+    {  
+    // This is the constructor method.  
+    }  
+// rest of the class members goes here.  
+} 
+
+=======================================
+Object Instatiate -
+==============================================
+// At this time the code in the constructor will // be executed  
+mySampleClass obj = new mySampleClass()  
+=============================================
+
+
+
+public class mySampleClass  
+{  
+    public mySampleClass()  
+    {  
+    // no parameter constructor method.// First Constructor  
+    }  
+    public mySampleClass(int Age)  
+    {  
+    // constructor with one parameter.// Second Constructor  
+    }  
+  
+    public mySampleClass(int Age, string Name)  
+    {  
+    // constructor with two parameters.// Third Constructor  
+    }  
+  
+// rest of the class members goes here.  
+}   
+
+
+================================================
+Constructor Instatiation -
+==========================
+mySampleClass obj = new mySampleClass()  
+// At this time the code of no parameter // constructor (First Constructor) will be executed  
+  
+mySampleClass obj = new mySampleClass(12)  
+// At this time the code of one parameter // constructor(Second Constructor) will be // executed.  
+=============================================================
+
+Calling Constructor from another Constructor:
+================================================
+****************************************
+
+public class mySampleClass  
+{  
+    public mySampleClass(): this(10)  
+    {  
+    // No parameter constructor method.// First Constructor  
+    }  
+  
+    public mySampleClass(int Age)   
+    {  
+    // Constructor with one parameter.// Second Constructor}  
+    }  
+}  
+********************************************************
+=========================================
+***************************************
+
+public mySampleClass(): this(10)
+
+Here this refers to the same class, so when we say this(10), we actually mean execute the public SampleClass (int Age) method. The above way of calling the method is called initializer. We can have at the most one initialize in this way in the method.
+
+Another thing which we must know is the execution sequence i.e., which method will be executed when. Here if I instantiate the object as:
+mySampleClass obj = new mySampleClass()  
+Then the code of public mySampleClass(int Age) will be executed before the code of mySampleClass(). So practically the definition of the method:
+public mySampleClass(): this(10)  
+{  
+   // This is the no parameter constructor method.// First Constructor  
+}   
+is equivalent to:
+public mySampleClass()  
+{  
+    mySampleClass(10)  
+     // This is the no parameter constructor method.// First Constructor  
+}   
+This is sometimes called Constructor chaining.
